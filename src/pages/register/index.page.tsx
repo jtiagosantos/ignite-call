@@ -5,6 +5,8 @@ import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { api } from '@/lib/axios'
+import { AxiosError } from 'axios'
 import { Container, Form, Header, FormError } from './styles'
 import type { SubmitHandler } from 'react-hook-form'
 
@@ -30,14 +32,37 @@ export default function Register() {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
   })
   const router = useRouter()
 
-  const onSubmit: SubmitHandler<RegisterFormData> = (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<RegisterFormData> = async ({
+    name,
+    username,
+  }) => {
+    try {
+      await api.post('/users', {
+        name,
+        username,
+      })
+    } catch (error) {
+      if (error instanceof AxiosError && error?.response?.data?.message) {
+        if (error.response.data.message === 'Username already exists') {
+          setError('username', {
+            message: 'Usuário já existe. Tente outro',
+          })
+          return
+        }
+
+        alert(error.response.data.message)
+        return
+      }
+
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -76,7 +101,7 @@ export default function Register() {
             <FormError size="sm">{errors.name.message}</FormError>
           )}
         </label>
-        <Button type="submit">
+        <Button type="submit" disabled={isSubmitting}>
           Próximo passo
           <ArrowRight />
         </Button>
