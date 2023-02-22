@@ -17,6 +17,10 @@ export default function ConnectCalendar() {
     await signIn('google')
   }
 
+  const handleNavigationToNextStep = () => {
+    router.push('/register/time-intervals')
+  }
+
   useEffect(() => {
     if (!!router.query.error && isSignedIn) {
       router.replace('connect-calendar')
@@ -61,7 +65,11 @@ export default function ConnectCalendar() {
           </AuthError>
         )}
 
-        <Button type="submit" disabled={!isSignedIn}>
+        <Button
+          type="submit"
+          onClick={handleNavigationToNextStep}
+          disabled={!isSignedIn}
+        >
           Próximo passo
           <ArrowRight />
         </Button>

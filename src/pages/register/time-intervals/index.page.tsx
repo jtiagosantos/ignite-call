@@ -22,6 +22,7 @@ import {
   IntervalItem,
   FormError,
 } from './styles'
+import { useRouter } from 'next/router'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -83,6 +84,7 @@ export default function TimeIntervals() {
     resolver: zodResolver(timeIntervalsFormSchema),
   })
 
+  const router = useRouter()
   const { fields } = useFieldArray({
     control,
     name: 'intervals',
@@ -93,6 +95,7 @@ export default function TimeIntervals() {
   const handleSetTimeIntervals = async (data: any) => {
     const { intervals } = data as TimeIntervalsFormOutput
     await api.post('/users/time-intervals', { intervals })
+    await router.push('/register/update-profile')
   }
 
   return (
