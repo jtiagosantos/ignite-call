@@ -1,7 +1,17 @@
-export const getWeekDays = () => {
+type getWeekDaysParams = {
+  short?: boolean
+}
+
+export const getWeekDays = ({ short = false }: getWeekDaysParams = {}) => {
   const formatter = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' })
 
   return Array.from(Array(7).keys())
     .map((day) => formatter.format(new Date(Date.UTC(2021, 5, day))))
-    .map((weekDay) => weekDay[0].toUpperCase().concat(weekDay.substring(1)))
+    .map((weekDay) => {
+      if (short) {
+        return weekDay.substring(0, 3).toUpperCase()
+      }
+
+      return weekDay[0].toUpperCase().concat(weekDay.substring(1))
+    })
 }
