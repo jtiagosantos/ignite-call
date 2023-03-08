@@ -3,7 +3,7 @@ import { api } from '@/lib/axios'
 import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useState, FC } from 'react'
 import {
   Container,
   TimePicker,
@@ -17,7 +17,11 @@ type Availability = {
   availableTimes: number[]
 }
 
-export const CalendarStep = () => {
+type CalendarStepProps = {
+  onSelectDateTime: (date: Date) => void
+}
+
+export const CalendarStep: FC<CalendarStepProps> = ({ onSelectDateTime }) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   // const [availability, setAvailability] = useState<Availability | null>(null)
   const router = useRouter()
@@ -48,6 +52,14 @@ export const CalendarStep = () => {
     },
   )
 
+  const handleSelectTime = (hour: number) => {
+    const dateTime = dayjs(selectedDate)
+      .set('hour', hour)
+      .startOf('hour')
+      .toDate()
+    onSelectDateTime(dateTime)
+  }
+
   return (
     <Container isTimePickerOpen={isDateSelected}>
       <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
@@ -62,6 +74,7 @@ export const CalendarStep = () => {
             {availability?.possibleTimes.map((hour) => (
               <TimePickerItem
                 key={hour}
+                onClick={() => handleSelectTime(hour)}
                 disabled={!availability.availableTimes.includes(hour)}
               >
                 {String(hour).padStart(2, '0')}:00h
