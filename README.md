@@ -2,20 +2,14 @@
 <h1 align="center">AluraTube</h1>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jtiagosantos/
-ignite-call?color=%green">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jtiagosantos/
-ignite-call?color=blue">
-  <a href="https://github.com/jtiagosantos/
-ignite-call/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jtiagosantos/
-ignite-call?color=purple">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jtiagosantos/ignite-call?color=%green">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/jtiagosantos/ignite-call?color=blue">
+  <a href="https://github.com/jtiagosantos/ignite-call/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/jtiagosantos/ignite-call?color=purple">
   </a>
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen?color=orange">
-   <a href="https://github.com/jtiagosantos/
-ignite-call/stargazers">
-    <img alt="Stargazers" src="https://img.shields.io/github/stars/jtiagosantos/
-ignite-call?style=social">
+   <a href="https://github.com/jtiagosantos/ignite-call/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/jtiagosantos/ignite-call?style=social">
   </a>
 </p>
 
