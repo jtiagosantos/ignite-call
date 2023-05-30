@@ -1,5 +1,5 @@
 
-<h1 align="center">AluraTube</h1>
+<h1 align="center">Ignite Call</h1>
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/jtiagosantos/ignite-call?color=%green">
